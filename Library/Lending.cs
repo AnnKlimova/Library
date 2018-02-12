@@ -13,17 +13,6 @@ namespace Library
 {
     public partial class Lending : Form
     {
-                        
-
-
-
-
-
-
-
-
-
-
 
         private SqlConnection sqlConnection = null;
 
@@ -59,7 +48,7 @@ namespace Library
                 sqlReader = getBookInfoCommand.ExecuteReader();
                 while (sqlReader.Read())
                 {
-                    InverNumtxt.Text = Convert.ToString(sqlReader["id_book"]);
+                    //InverNumtxt.Text = Convert.ToString(sqlReader["id_book"]);
                     Authortxt.Text = Convert.ToString(sqlReader["name_author"]);
                     NameBooktxt.Text = Convert.ToString(sqlReader["title"]);
                 }
@@ -158,7 +147,7 @@ namespace Library
             { MessageBox.Show( "Книга не может быть выдана! Дата возврата меньше даты выдачи!","", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             } else {
                 SqlCommand insertLengingCommand = new SqlCommand("INSERT INTO [Lending] (id_book,id_reader,date_of_issue,date_of_return) VALUES (@id_book, @id_reader, @date_of_issue,@date_of_return); UPDATE [Books] SET [id_status]=1 where [id_book]=@id_book", sqlConnection);
-                insertLengingCommand.Parameters.AddWithValue("id_book", InverNumtxt.Text);
+               // insertLengingCommand.Parameters.AddWithValue("id_book", InverNumtxt.Text);
                 insertLengingCommand.Parameters.AddWithValue("id_reader", Readertxt.Text);
                 insertLengingCommand.Parameters.AddWithValue("date_of_issue", IssuDateTime.Value.Date);
                 insertLengingCommand.Parameters.AddWithValue("date_of_return", ReturnDateTime.Value.Date);
